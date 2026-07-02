@@ -23,25 +23,7 @@ import {
 } from './data/portfolioData';
 
 export default function App() {
-  const [profileImage, setProfileImage] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Load avatar base64 cache if stored previously
-  useEffect(() => {
-    const cached = localStorage.getItem('abhiram_avatar_base64');
-    if (cached) {
-      setProfileImage(cached);
-    }
-  }, []);
-
-  const handleImageChange = (newImage: string | null) => {
-    setProfileImage(newImage);
-    if (newImage) {
-      localStorage.setItem('abhiram_avatar_base64', newImage);
-    } else {
-      localStorage.removeItem('abhiram_avatar_base64');
-    }
-  };
 
   const handleNodeNavigation = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -205,12 +187,7 @@ export default function App() {
               
               {/* Floating profile avatar node adjacent to name */}
               <div className="flex items-center gap-5">
-                <ProfilePictureContainer 
-                  currentImage={profileImage} 
-                  onImageChange={handleImageChange}
-                  size="md"
-                  interactive={true}
-                />
+                <ProfilePictureContainer size="md" />
                 <div>
                   <span className="text-xs text-cyan-400 font-mono tracking-widest uppercase block animate-pulse">
                     AI AGENT ONLINE // VISAKHAPATNAM
@@ -299,12 +276,7 @@ export default function App() {
               <div className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-emerald-400" />
               <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-emerald-400" />
 
-              <ProfilePictureContainer 
-                currentImage={profileImage} 
-                onImageChange={handleImageChange}
-                size="lg"
-                interactive={false}
-              />
+              <ProfilePictureContainer size="lg" />
 
               <div className="text-center mt-5 font-mono">
                 <span className="text-xs font-bold text-white block uppercase tracking-widest">{PERSONAL_INFO.preferredName}</span>
