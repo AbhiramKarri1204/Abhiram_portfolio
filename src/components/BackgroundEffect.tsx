@@ -30,7 +30,7 @@ export const BackgroundEffect: React.FC = () => {
         this.size = Math.random() * 2 + 0.5;
         this.speedX = (Math.random() - 0.5) * 0.4;
         this.speedY = (Math.random() - 0.5) * 0.4;
-        this.color = Math.random() > 0.5 ? '#10b981' : '#06b6d4'; // emerald vs cyan
+        this.color = Math.random() > 0.5 ? '#ef4444' : '#f43f5e'; // red vs rose
         this.alpha = Math.random() * 0.5 + 0.2;
       }
 
@@ -59,7 +59,7 @@ export const BackgroundEffect: React.FC = () => {
     const particles: Particle[] = Array.from({ length: 45 }, () => new Particle());
 
     const drawGrid = (t: number) => {
-      ctx.strokeStyle = 'rgba(16, 185, 129, 0.04)'; // Emerald faint lines
+      ctx.strokeStyle = 'rgba(239, 68, 68, 0.08)'; // Red faint lines
       ctx.lineWidth = 1;
 
       const gridSize = 60;
@@ -91,9 +91,9 @@ export const BackgroundEffect: React.FC = () => {
         height * 0.4,
         Math.min(width, height) * 0.6
       );
-      gradient.addColorStop(0, 'rgba(16, 185, 129, 0.06)'); // emerald
-      gradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.02)'); // cyan
-      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      gradient.addColorStop(0, 'rgba(239, 68, 68, 0.04)'); // red
+      gradient.addColorStop(0.5, 'rgba(244, 63, 94, 0.01)'); // rose
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
@@ -106,9 +106,9 @@ export const BackgroundEffect: React.FC = () => {
         height * 0.2,
         Math.min(width, height) * 0.5
       );
-      rGradient.addColorStop(0, 'rgba(6, 182, 212, 0.05)'); // cyan glow
-      rGradient.addColorStop(0.6, 'rgba(16, 185, 129, 0.01)'); // emerald fade
-      rGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      rGradient.addColorStop(0, 'rgba(244, 63, 94, 0.03)'); // rose glow
+      rGradient.addColorStop(0.6, 'rgba(239, 68, 68, 0.01)'); // red fade
+      rGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = rGradient;
       ctx.fillRect(0, 0, width, height);
     };
@@ -121,7 +121,7 @@ export const BackgroundEffect: React.FC = () => {
     window.addEventListener('resize', handleResize);
 
     const animate = (timestamp: number) => {
-      ctx.fillStyle = '#05070a'; // Deepest cyber slate/black background
+      ctx.fillStyle = '#ffffff'; // Pure white canvas background
       ctx.fillRect(0, 0, width, height);
 
       drawGrid(timestamp);
@@ -135,14 +135,14 @@ export const BackgroundEffect: React.FC = () => {
       const laserY = (timestamp * 0.08) % (height * 1.5);
       if (laserY < height) {
         const laserGrad = ctx.createLinearGradient(0, laserY - 10, 0, laserY + 10);
-        laserGrad.addColorStop(0, 'rgba(16, 185, 129, 0)');
-        laserGrad.addColorStop(0.5, 'rgba(16, 185, 129, 0.05)');
-        laserGrad.addColorStop(1, 'rgba(16, 185, 129, 0)');
+        laserGrad.addColorStop(0, 'rgba(239, 68, 68, 0)');
+        laserGrad.addColorStop(0.5, 'rgba(239, 68, 68, 0.03)');
+        laserGrad.addColorStop(1, 'rgba(239, 68, 68, 0)');
         ctx.fillStyle = laserGrad;
         ctx.fillRect(0, laserY - 10, width, 20);
 
         // Sweeping line itself
-        ctx.strokeStyle = 'rgba(16, 185, 129, 0.12)';
+        ctx.strokeStyle = 'rgba(239, 68, 68, 0.08)';
         ctx.beginPath();
         ctx.moveTo(0, laserY);
         ctx.lineTo(width, laserY);
@@ -164,7 +164,7 @@ export const BackgroundEffect: React.FC = () => {
     <canvas
       id="cybernetic-background-grid"
       ref={canvasRef}
-      className="fixed inset-0 -z-50 pointer-events-none select-none bg-[#05070a]"
+      className="fixed inset-0 -z-50 pointer-events-none select-none bg-[#ffffff]"
     />
   );
 };

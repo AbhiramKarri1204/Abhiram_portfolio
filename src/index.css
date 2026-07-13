@@ -7,45 +7,294 @@
 }
 
 :root {
-  --bg: #05070a;
-  --panel: #0d121b;
-  --accent: #10b981;
-  --accent-glow: rgba(16, 185, 129, 0.3);
-  --cyan: #06b6d4;
-  --text-dim: #94a3b8;
-  --border: rgba(16, 185, 129, 0.2);
+  --bg: #ffffff;
+  --bg-alt: #fff8f8;
+  --panel: #ffffff;
+  --accent: #dc2626; /* Brilliant Crimson Red */
+  --accent-glow: rgba(220, 38, 38, 0.25);
+  --cyan: #e11d48; /* Crimson Rose */
+  --text-dim: #4b5563; /* Readable dark gray for subtext */
+  --border: rgba(220, 38, 38, 0.15);
 }
 
 body {
-  background-color: var(--bg);
-  color: #e2e8f0;
+  background-color: var(--bg) !important;
+  color: #000000 !important;
+  font-family: var(--font-sans);
 }
 
-/* Technical Dashboard / Cybernetic special utility classes */
-.glass {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* HIGH-CONTRAST LIGHT MODE & CRIMSON ACCENTS OVERRIDES */
+
+/* 1. Navigation & Headers */
+header {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(220, 38, 38, 0.15) !important;
+  backdrop-filter: blur(12px);
+}
+header span, header button, header nav button {
+  color: #000000 !important;
+}
+header button:hover, header nav button:hover {
+  color: #dc2626 !important;
+  text-shadow: 0 0 8px rgba(220, 38, 38, 0.2) !important;
+}
+header .bg-emerald-500 {
+  background-color: #dc2626 !important;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5) !important;
+}
+
+/* Mobile drawer navigation */
+div[class*="fixed inset-x-0 top-16"] {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid rgba(220, 38, 38, 0.2) !important;
+}
+div[class*="fixed inset-x-0 top-16"] button {
+  color: #000000 !important;
+  border-bottom-color: #f3f4f6 !important;
+}
+div[class*="fixed inset-x-0 top-16"] button:hover {
+  color: #dc2626 !important;
+}
+
+/* 2. Glass Cards and General Panels */
+.glass,
+[id="omnitrix-central-component"],
+[class*="bg-[#0d121b]"],
+[class*="bg-cyan-950/20"],
+[class*="bg-emerald-950/20"],
+[class*="bg-gray-950/10"],
+[class*="bg-[#0d121b]/80"],
+[class*="bg-[#0d121b]/65"],
+[class*="bg-[#0d121b]/40"] {
+  background-color: #ffffff !important;
+  border-color: rgba(220, 38, 38, 0.15) !important;
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.05) !important;
 }
 
 .glass:hover {
-  border-color: rgba(16, 185, 129, 0.4);
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.1);
+  border-color: rgba(220, 38, 38, 0.3) !important;
+  box-shadow: 0 12px 35px rgba(220, 38, 38, 0.08) !important;
+}
+
+/* Sub-panels and deep wells (Terminal logs, input blocks, stats) */
+[class*="bg-[#05070a]"],
+[class*="bg-gray-950"],
+[class*="bg-black/90"],
+[class*="bg-[#050b07]"],
+[class*="bg-[#05070a]/95"],
+[class*="bg-emerald-950/40"] {
+  background-color: #fff9f9 !important; /* Soft light rose */
+  border-color: rgba(220, 38, 38, 0.12) !important;
+}
+
+/* 3. Text Color Mapping for Light Backgrounds - Pure Black Letters */
+.text-white,
+[class*="text-white"],
+.text-gray-300,
+[class*="text-gray-300"],
+.text-gray-400,
+[class*="text-gray-400"],
+.text-gray-500,
+[class*="text-gray-500"],
+[class*="text-slate-"],
+[class*="text-zinc-"],
+[class*="text-gray-"],
+h1, h2, h3, h4, h5, h6, p, span, li, label, strong, em {
+  color: #000000 !important; /* Pure black letters as requested */
+}
+
+/* Specific Font Color Override for White Text Elements */
+.font-color-white-override,
+.font-color-white-override * {
+  color: #ffffff !important;
+}
+
+/* Specific Font Color Override for Red Text Elements */
+.font-color-red-override,
+.font-color-red-override * {
+  color: #dc2626 !important;
+}
+
+/* 4. Crimson Accents (emerald and cyan classes mapped to crimson red) */
+[class*="text-emerald-400"],
+[class*="text-emerald-500"],
+[class*="text-cyan-400"],
+[class*="text-cyan-500"],
+[class*="text-emerald-300"] {
+  color: #dc2626 !important; /* Crimson Red */
+}
+
+[class*="bg-emerald-500"],
+[class*="bg-emerald-400"],
+[class*="bg-cyan-500"],
+[class*="hover:bg-cyan-500"]:hover,
+[class*="hover:bg-emerald-500"]:hover {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+[class*="bg-emerald-950"],
+[class*="bg-cyan-950"] {
+  background-color: #ffeef0 !important; /* extremely soft red blocks */
+  color: #dc2626 !important;
+}
+
+[class*="border-emerald-500"],
+[class*="border-[#10b981]"],
+[class*="border-[#06b6d4]"],
+[class*="border-cyan-500"] {
+  border-color: rgba(220, 38, 38, 0.25) !important;
+}
+
+/* Interactive elements */
+[class*="hover:text-emerald-400"]:hover,
+[class*="hover:text-cyan-400"]:hover,
+[class*="hover:text-emerald-300"]:hover {
+  color: #991b1b !important; /* Dark crimson on hover */
+}
+
+[class*="hover:border-[#10b981]"]:hover,
+[class*="hover:border-emerald-400"]:hover,
+[class*="hover:border-cyan-500"]:hover {
+  border-color: rgba(220, 38, 38, 0.45) !important;
+}
+
+/* 5. Profile Picture Container HUD Rings & Shadows */
+[id="profile-hud-avatar-box"] {
+  border-color: #dc2626 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.25) !important;
+}
+[id="profile-hud-avatar-box"]:hover {
+  box-shadow: 0 0 35px rgba(220, 38, 38, 0.45) !important;
+}
+[id="profile-hud-avatar-box"] [class*="border-emerald-400"],
+[id="profile-hud-avatar-box"] [class*="border-cyan-400"] {
+  border-color: #dc2626 !important;
+}
+[class*="border-emerald-500/15"] {
+  border-color: rgba(220, 38, 38, 0.15) !important;
+}
+[class*="border-cyan-500/20"] {
+  border-color: rgba(220, 38, 38, 0.20) !important;
+}
+[class*="bg-emerald-500 rounded-full"] {
+  background-color: #dc2626 !important;
+}
+
+/* 6. High-Fidelity 2005 Omnitrix Core RED-Mode Calibration */
+svg polygon {
+  fill: #dc2626 !important;
+}
+svg circle[stroke="#10b981"] {
+  stroke: #dc2626 !important;
+}
+svg path[stroke="#10b981"] {
+  stroke: #dc2626 !important;
+}
+svg rect[fill="#10b981"] {
+  fill: #dc2626 !important;
+}
+svg g[clip-path*="omnitrix"] polygon {
+  fill: #dc2626 !important;
+}
+svg g[clip-path*="omnitrix"] line {
+  stroke: #111827 !important;
+}
+svg g clipPath + rect {
+  fill: #fff5f5 !important; /* Soft rose dial surface background */
+}
+
+/* Bezel dial nodes */
+[class*="border-[#10b981]/15"] {
+  border-color: rgba(220, 38, 38, 0.15) !important;
+}
+[class*="border-emerald-400 bg-emerald-950"] {
+  border-color: #dc2626 !important;
+  background-color: #fff1f2 !important;
+  color: #dc2626 !important;
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.4) !important;
+}
+[class*="bg-gradient-to-br from-emerald-950/40 via-[#0d121b] to-[#05070a]"] {
+  background-image: linear-gradient(to bottom right, rgba(220, 38, 38, 0.05), #ffffff, #fdf8f8) !important;
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.3) !important;
+}
+[class*="border-emerald-400/40"] {
+  border-color: rgba(220, 38, 38, 0.3) !important;
+}
+
+/* 7. Terminal Console Calibration */
+[id="workspace-bash-terminal"] {
+  background-color: #ffffff !important;
+  border-color: rgba(220, 38, 38, 0.15) !important;
+  box-shadow: 0 15px 40px rgba(220, 38, 38, 0.08) !important;
+}
+[id="workspace-bash-terminal"] [class*="bg-[#05070a]"],
+[id="workspace-bash-terminal"] [class*="bg-[#0d121b]/65"] {
+  background-color: #fff9f9 !important;
+  border-color: rgba(220, 38, 38, 0.12) !important;
+}
+[id="workspace-bash-terminal"] [class*="text-cyan-400"] {
+  color: #dc2626 !important; /* user input is crimson red */
+}
+[id="workspace-bash-terminal"] input {
+  color: #dc2626 !important; /* typing text crimson red */
+}
+[id="workspace-bash-terminal"] input::placeholder {
+  color: #9ca3af !important;
+}
+[id="workspace-bash-terminal"] [class*="text-emerald-400"],
+[id="workspace-bash-terminal"] [class*="text-emerald-500"],
+[id="workspace-bash-terminal"] [class*="text-emerald-300"] {
+  color: #dc2626 !important;
+}
+
+/* 8. Selection & Custom Animations */
+::selection {
+  background-color: #fecaca !important; /* soft red selection */
+  color: #991b1b !important;
 }
 
 .neon-text {
-  text-shadow: 0 0 10px var(--accent-glow);
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.15) !important;
 }
 
 .neon-border {
-  border-color: var(--accent);
-  box-shadow: 0 0 10px var(--accent-glow);
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.15) !important;
 }
 
 .grid-bg {
-  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(220, 38, 38, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 38, 38, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+
+/* Chronology Timelines */
+[class*="border-l-2 border-emerald-500"] {
+  border-color: #dc2626 !important;
+}
+[class*="bg-emerald-500 animate-ping"] {
+  background-color: #dc2626 !important;
+}
+[class*="text-emerald-400 font-bold"] {
+  color: #dc2626 !important;
+}
+
+/* Tom & Jerry aesthetic red alignment */
+[class*="bg-cyan-500/15"] {
+  background-color: rgba(220, 38, 38, 0.12) !important;
+}
+[class*="bg-amber-500/15"] {
+  background-color: rgba(220, 38, 38, 0.06) !important;
+}
+[class*="text-cyan-400/80"] {
+  color: #dc2626 !important;
+  background-color: #ffeef0 !important;
+  border-color: rgba(220, 38, 38, 0.12) !important;
+}
+[class*="via-emerald-500/20"] {
+  background-image: linear-gradient(to right, transparent, rgba(220, 38, 38, 0.2), transparent) !important;
+}
+
 

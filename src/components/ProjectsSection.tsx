@@ -6,7 +6,6 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { PROJECTS, PERSONAL_INFO } from '../data/portfolioData';
 import { Project } from '../types';
-import { TomAndJerryChase } from './TomAndJerryChase';
 
 // Stereoscopic Project Card matching the Credentials Card style and interaction physics
 const StereoscopicProjectCard: React.FC<{ 
@@ -63,64 +62,64 @@ const StereoscopicProjectCard: React.FC<{
         style={{
           transformStyle: 'preserve-3d',
         }}
-        className="w-full h-full rounded-xl border border-[#10b981]/35 bg-gradient-to-br from-[#0d121b] via-[#05070a] to-[#0d121b] p-6 shadow-[0_10px_30px_rgba(3,7,18,0.7)] flex flex-col justify-between overflow-hidden relative group hover:border-emerald-400/60"
+        className="w-full h-full rounded-xl border border-red-600/20 bg-white p-6 shadow-[0_10px_30px_rgba(220,38,38,0.06)] flex flex-col justify-between overflow-hidden relative group hover:border-red-600/50"
       >
         {/* Holographic glowing lines backdrop on hover */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.12),transparent_50%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,38,38,0.05),transparent_50%)] pointer-events-none" />
         
         {/* Animated matrix horizontal grids on hover */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.015)_1px,transparent_1px)] bg-[size:16px_16px] opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(220,38,38,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(220,38,38,0.01)_1px,transparent_1px)] bg-[size:16px_16px] opacity-10 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none" />
 
         {/* Custom Project Watermark badge */}
-        <div className="absolute right-3 top-3 text-emerald-500/10 pointer-events-none select-none">
+        <div className="absolute right-3 top-3 text-red-600/5 pointer-events-none select-none">
           <Terminal className="w-32 h-32 stroke-[0.5]" />
         </div>
 
         {/* Header Block */}
         <div style={{ transform: 'translateZ(40px)' }} className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-950/30 text-[8px] font-bold text-emerald-400 font-mono tracking-widest uppercase">
+            <span className="px-2 py-0.5 rounded border border-red-500/20 bg-red-50 text-[8px] font-bold text-red-600 font-mono tracking-widest uppercase">
               {project.status || 'Active'}
             </span>
             <span className="text-[9px] text-gray-500 font-mono flex items-center gap-1">
-              <Calendar className="w-3 h-3 text-cyan-400" />
+              <Calendar className="w-3 h-3 text-red-500" />
               {project.duration}
             </span>
           </div>
           
-          <h3 className="text-sm font-bold text-white tracking-wide uppercase leading-snug font-sans group-hover:text-emerald-300 transition-colors">
+          <h3 className="text-sm font-bold text-gray-900 tracking-wide uppercase leading-snug font-sans group-hover:text-red-600 transition-colors">
             {project.title}
           </h3>
           
           {project.association && (
-            <p className="text-[9px] text-gray-400 font-mono flex items-center gap-1">
-              <BookOpen className="w-3 h-3 text-emerald-500" />
+            <p className="text-[9px] text-gray-500 font-mono flex items-center gap-1">
+              <BookOpen className="w-3 h-3 text-red-500" />
               <span>{project.association}</span>
             </p>
           )}
         </div>
 
         {/* Description & Technical Summary block */}
-        <div style={{ transform: 'translateZ(25px)' }} className="space-y-2.5 bg-[#0d121b]/80 p-3 rounded-lg border border-[#10b981]/15">
-          <p className="text-[10px] text-gray-400 font-mono leading-relaxed line-clamp-3">
+        <div style={{ transform: 'translateZ(25px)' }} className="space-y-2.5 bg-gray-50 p-3 rounded-lg border border-red-600/10">
+          <p className="text-[10px] text-gray-600 font-mono leading-relaxed line-clamp-3">
             {project.description}
           </p>
-          <div className="inline-flex items-center gap-1 text-[9px] text-emerald-400 font-mono tracking-widest uppercase font-bold group-hover:text-emerald-300 transition-colors">
+          <div className="inline-flex items-center gap-1 text-[9px] text-red-600 font-mono tracking-widest uppercase font-bold group-hover:text-red-700 transition-colors">
             <span>Decompile Blueprint</span>
             <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
 
         {/* Footer block: Tags */}
-        <div style={{ transform: 'translateZ(30px)' }} className="space-y-3 border-t border-emerald-500/10 pt-3">
+        <div style={{ transform: 'translateZ(30px)' }} className="space-y-3 border-t border-red-600/10 pt-3">
           <div className="flex flex-wrap gap-1.5">
             {project.tags.slice(0, 3).map((t) => (
-              <span key={t} className="px-1.5 py-0.5 rounded bg-gray-950 text-gray-400 font-mono text-[8px] uppercase font-bold border border-gray-900">
+              <span key={t} className="px-1.5 py-0.5 rounded bg-gray-100 text-gray-600 font-mono text-[8px] uppercase font-bold border border-gray-200">
                 {t}
               </span>
             ))}
             {project.tags.length > 3 && (
-              <span className="px-1.5 py-0.5 rounded bg-gray-950 text-emerald-500/75 font-mono text-[8px] uppercase font-bold border border-gray-900">
+              <span className="px-1.5 py-0.5 rounded bg-red-50 text-red-600 font-mono text-[8px] uppercase font-bold border border-red-200/50">
                 +{project.tags.length - 3} MORE
               </span>
             )}
@@ -158,9 +157,6 @@ export const ProjectsSection: React.FC = () => {
 
   return (
     <div id="projects-showcase-portal" className="w-full space-y-8 relative pt-12">
-      {/* Playful Animated Tom and Jerry chase easter egg overlay */}
-      <TomAndJerryChase />
-      
       {/* Tab bar header matching credentials layout exactly */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-emerald-500/10 pb-6">
         <div>
@@ -223,7 +219,7 @@ export const ProjectsSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handlePrevDeck}
-                className="p-2.5 rounded-full border border-emerald-500/20 bg-emerald-950/15 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2.5 rounded-full border border-red-600/20 bg-white text-red-600 hover:bg-red-600 hover:text-white hover:shadow-md transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
                 title="Previous Project"
               >
                 ◀
@@ -252,7 +248,7 @@ export const ProjectsSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNextDeck}
-                className="p-2.5 rounded-full border border-emerald-500/20 bg-emerald-950/15 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2.5 rounded-full border border-red-600/20 bg-white text-red-600 hover:bg-red-600 hover:text-white hover:shadow-md transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
                 title="Next Project"
               >
                 ▶
@@ -272,8 +268,8 @@ export const ProjectsSection: React.FC = () => {
                     }}
                     className={`w-2.5 h-2.5 rounded-full transition-all ${
                       idx === activeDeckIdx 
-                        ? 'bg-emerald-400 w-6 shadow-[0_0_8px_rgba(52,211,153,0.5)]' 
-                        : 'bg-gray-800 hover:bg-gray-600'
+                        ? 'bg-red-600 w-6 shadow-[0_0_8px_rgba(220,38,38,0.4)]' 
+                        : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                     aria-label={`Slide ${idx + 1}`}
                   />
@@ -281,13 +277,13 @@ export const ProjectsSection: React.FC = () => {
               </div>
 
               {/* High-Tech Autoplay Loading Line */}
-              <div className="w-32 h-[2px] bg-[#0d121b] border border-[#10b981]/10 rounded-full overflow-hidden relative">
+              <div className="w-32 h-[2px] bg-gray-100 border border-red-600/10 rounded-full overflow-hidden relative">
                 <motion.div
                   key={`${activeDeckIdx}-${isDeckHovered}`}
                   initial={{ width: '0%' }}
                   animate={isDeckHovered ? { width: '0%' } : { width: '100%' }}
                   transition={isDeckHovered ? { duration: 0 } : { duration: 2, ease: 'linear' }}
-                  className="h-full bg-gradient-to-r from-cyan-400 to-emerald-400"
+                  className="h-full bg-gradient-to-r from-red-500 to-red-600"
                 />
               </div>
             </div>
@@ -312,50 +308,50 @@ export const ProjectsSection: React.FC = () => {
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setSelectedProject(p)}
-                className="glass p-5 flex flex-col justify-between hover:border-[#10b981]/40 transition-all group relative overflow-hidden cursor-pointer hover:shadow-[0_0_20px_rgba(16,185,129,0.08)]"
+                className="bg-white border border-red-600/10 rounded-xl p-5 flex flex-col justify-between hover:border-red-600/35 transition-all group relative overflow-hidden cursor-pointer hover:shadow-[0_10px_30px_rgba(220,38,38,0.06)]"
               >
                 {/* Horizontal glowing lasers Sweep on hover */}
-                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded border border-emerald-500/25 bg-emerald-950/30 text-[8px] font-bold text-emerald-400 font-mono tracking-widest uppercase">
+                      <span className="px-2 py-0.5 rounded border border-red-500/20 bg-red-50 text-[8px] font-bold text-red-600 font-mono tracking-widest uppercase">
                         {p.status}
                       </span>
                       {p.duration && (
                         <span className="text-[9px] text-gray-500 font-mono flex items-center gap-1">
-                          <Calendar className="w-3 h-3 text-cyan-400" />
+                          <Calendar className="w-3 h-3 text-red-500" />
                           {p.duration}
                         </span>
                       )}
                     </div>
-                    <Terminal className="w-4.5 h-4.5 text-emerald-400" />
+                    <Terminal className="w-4.5 h-4.5 text-red-500" />
                   </div>
 
-                  <h3 className="text-sm font-bold text-white uppercase tracking-wider group-hover:text-emerald-300 transition-colors">
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider group-hover:text-red-600 transition-colors">
                     {p.title}
                   </h3>
 
-                  <p className="text-[11px] text-gray-400 font-mono leading-relaxed line-clamp-3">
+                  <p className="text-[11px] text-gray-600 font-mono leading-relaxed line-clamp-3">
                     {p.description}
                   </p>
 
-                  <div className="inline-flex items-center gap-1 text-[9px] text-emerald-400 font-mono tracking-widest uppercase mt-2 group-hover:text-emerald-300 transition-colors">
+                  <div className="inline-flex items-center gap-1 text-[9px] text-red-600 font-mono tracking-widest uppercase mt-2 group-hover:text-red-700 transition-colors">
                     <span>Decompile Blueprint</span>
                     <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t border-gray-900 mt-5">
+                <div className="space-y-4 pt-4 border-t border-gray-100 mt-5">
                   <div className="flex flex-wrap gap-1.5">
                     {p.tags.slice(0, 4).map((t) => (
-                      <span key={t} className="px-1.5 py-0.5 rounded bg-gray-900 text-gray-500 font-mono text-[8px] uppercase font-bold">
+                      <span key={t} className="px-1.5 py-0.5 rounded bg-gray-100 text-gray-600 font-mono text-[8px] uppercase font-bold border border-gray-200">
                         {t}
                       </span>
                     ))}
                     {p.tags.length > 4 && (
-                      <span className="px-1.5 py-0.5 rounded bg-gray-900 text-emerald-500/75 font-mono text-[8px] uppercase font-bold">
+                      <span className="px-1.5 py-0.5 rounded bg-red-50 text-red-600 font-mono text-[8px] uppercase font-bold border border-red-200/50">
                         +{p.tags.length - 4} MORE
                       </span>
                     )}

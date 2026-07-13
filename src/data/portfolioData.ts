@@ -39,7 +39,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
     description: 'High-performance scripting, procedural algorithms, and data querying layers.',
     skills: [
       { name: 'Python (OOP & Scripting)', value: 95 },
-      { name: 'SQL (Structured Querying)', value: 88 },
       { name: 'HTML5 / CSS3 / Tailwind', value: 85 },
       { name: 'JavaScript / TypeScript', value: 80 },
       { name: 'C / C++', value: 75 }
@@ -53,7 +52,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
     skills: [
       { name: 'Software Pipelines', value: 92 },
       { name: 'Git & Version Control', value: 90 },
-      { name: 'CI/CD & Shell Scripting', value: 85 },
       { name: 'Debugging Workflows', value: 93 },
       { name: 'Task Automation', value: 94 }
     ]

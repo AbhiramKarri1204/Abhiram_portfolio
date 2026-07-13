@@ -26,13 +26,27 @@ export const ContactHub: React.FC = () => {
 
     setSubmitting(true);
     
-    // Simulate high-tech encryption and transmission
+    // Permanently hardcoded destination email address
+    const destinationEmail = 'karriabhiram91@gmail.com';
+    
+    // Bundle transmission details: NAME, E-MAIL, and MESSAGE CONTENT PACKET
+    const subject = encodeURIComponent(`Portfolio Transmission Packet from ${formData.name}`);
+    const body = encodeURIComponent(
+      `NAME: ${formData.name}\n` +
+      `E-MAIL: ${formData.email}\n\n` +
+      `MESSAGE CONTENT PACKET:\n${formData.message}`
+    );
+
+    // Open the portal directly
+    window.location.href = `mailto:${destinationEmail}?subject=${subject}&body=${body}`;
+
+    // Simulate high-tech transmission visualization
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
+    }, 1000);
   };
 
   return (
@@ -103,10 +117,10 @@ export const ContactHub: React.FC = () => {
         </div>
 
         {/* Security badge statement */}
-        <div className="p-4 rounded-lg border border-gray-900 bg-gray-900/20 font-mono text-[10px] leading-relaxed text-gray-500 flex gap-2.5">
-          <Shield className="w-5 h-5 text-gray-700 shrink-0" />
+        <div className="p-4 rounded-lg border border-red-600/10 bg-white shadow-md font-mono text-[10px] leading-relaxed text-gray-600 flex gap-2.5">
+          <Shield className="w-5 h-5 text-red-600 shrink-0" />
           <div>
-            <span className="text-gray-400 font-bold block uppercase mb-0.5">Packet Security Guarantee</span>
+            <span className="text-gray-900 font-bold block uppercase mb-0.5">Packet Security Guarantee</span>
             All inquiries are structured into encrypted transport layers and stored safely on high-integrity database hubs. Encryption key verification matches SHA-256 standards.
           </div>
         </div>
@@ -122,7 +136,7 @@ export const ContactHub: React.FC = () => {
           <div className="relative mb-6">
             <h4 className="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2">
               <MessageSquareCode className="w-5 h-5 text-emerald-400" />
-              Let's me tell you something
+              Drop Me A Line
             </h4>
             <p className="text-xs text-gray-400 font-mono">
               Compose secure transmission logs directly to Karri Abhiram.
@@ -185,16 +199,16 @@ export const ContactHub: React.FC = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full min-h-[44px] font-mono text-xs font-bold uppercase tracking-widest rounded-md transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden bg-gradient-to-r from-emerald-600 to-cyan-600 text-black hover:from-emerald-500 hover:to-cyan-500 shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] cursor-pointer disabled:opacity-50"
+              className="w-full min-h-[44px] font-mono text-xs font-bold uppercase tracking-widest rounded-md transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-500 hover:to-red-650 shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.45)] cursor-pointer disabled:opacity-50"
             >
               {submitting ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin text-black" />
+                  <RefreshCw className="w-4 h-4 animate-spin text-white" />
                   ENCRYPTING & TRANSMITTING...
                 </>
               ) : (
                 <>
-                  <Send className="w-4 h-4 text-black" />
+                  <Send className="w-4 h-4 text-white" />
                   TRANSMIT ENQUIRY SIGNAL
                 </>
               )}

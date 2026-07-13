@@ -66,7 +66,7 @@ export const OmnitrixSkills: React.FC = () => {
           Skills Core
         </div>
         <h2 className="text-2xl sm:text-3xl font-sans font-bold tracking-tight text-white uppercase">
-          Core Ecosystem
+          skills developed
         </h2>
         <p className="text-xs text-gray-400 font-mono mt-1">
           Asynchronously revolving database metrics — Click center core to recalibrate matrix signals.
