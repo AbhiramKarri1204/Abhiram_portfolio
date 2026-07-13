@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Change this line to import your newly added image
-import abhiramAvatar from '../assets/images/profile.png';
+// Using Vite's standard dynamic asset reference which avoids TypeScript module import errors
+const abhiramAvatar = new URL('../assets/images/profile.png', import.meta.url).href;
 
 interface ProfileProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';

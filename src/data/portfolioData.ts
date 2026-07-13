@@ -7,7 +7,7 @@ export const PERSONAL_INFO = {
   location: 'Visakhapatnam, Andhra Pradesh, India',
   hometown: 'Tallarevu, Andhra Pradesh, India',
   email: 'karriabhiram91@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/karri-pavan-durga-satya-abhiram',
+  linkedin: 'https://www.linkedin.com/in/karri-pavan-durga-satya-abhiram/',
   github: 'https://github.com/KarriAbhiram',
   bio: 'AI Engineer and Python Developer completing B.Tech in CSE (AI) at Kakinada Institute of Engineering and Technology. Specialized in predictive modeling, scalable software pipelines, and dynamic automation systems. Highly competent in translating complex data into optimized visual matrices, building intelligent agentic portals, and developing real-world solutions like Mobile Price Predictors and Recipe Finders.',
   languages: [

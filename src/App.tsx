@@ -25,6 +25,10 @@ import {
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    document.title = "Abhiram Portfolio";
+  }, []);
+
   const handleNodeNavigation = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
