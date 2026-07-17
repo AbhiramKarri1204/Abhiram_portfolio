@@ -50,7 +50,7 @@ const StereoscopicProjectCard: React.FC<{
       style={{
         perspective: 1000,
       }}
-      className="relative w-full max-w-sm h-[390px] rounded-xl cursor-pointer transition-shadow duration-300"
+      className="relative w-full max-w-sm h-[520px] rounded-xl cursor-pointer transition-shadow duration-300"
     >
       <motion.div
         animate={{
@@ -62,64 +62,80 @@ const StereoscopicProjectCard: React.FC<{
         style={{
           transformStyle: 'preserve-3d',
         }}
-        className="w-full h-full rounded-xl border border-red-600/20 bg-white p-6 shadow-[0_10px_30px_rgba(220,38,38,0.06)] flex flex-col justify-between overflow-hidden relative group hover:border-red-600/50"
+        className="w-full h-full rounded-xl border border-slate-800 bg-[#0d121b] p-6 shadow-[0_10px_30px_rgba(16,185,129,0.03)] flex flex-col justify-between overflow-hidden relative group hover:border-emerald-500/30"
       >
         {/* Holographic glowing lines backdrop on hover */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,38,38,0.05),transparent_50%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05),transparent_50%)] pointer-events-none" />
         
         {/* Animated matrix horizontal grids on hover */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(220,38,38,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(220,38,38,0.01)_1px,transparent_1px)] bg-[size:16px_16px] opacity-10 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.01)_1px,transparent_1px)] bg-[size:16px_16px] opacity-10 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none" />
 
         {/* Custom Project Watermark badge */}
-        <div className="absolute right-3 top-3 text-red-600/5 pointer-events-none select-none">
+        <div className="absolute right-3 top-3 text-emerald-500/5 pointer-events-none select-none">
           <Terminal className="w-32 h-32 stroke-[0.5]" />
         </div>
 
+        {/* Project Thumbnail Image */}
+        {project.imageUrl && (
+          <div style={{ transform: 'translateZ(30px)' }} className="w-full h-44 rounded-lg overflow-hidden border border-slate-800/80 relative mb-3 group-hover:border-emerald-500/30 transition-colors">
+            <img 
+              src={project.imageUrl} 
+              alt={project.title} 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              referrerPolicy="no-referrer"
+            />
+            {/* Ambient vignette gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d121b]/40 via-transparent to-transparent opacity-80" />
+            {/* Sci-fi scanline overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none" />
+          </div>
+        )}
+
         {/* Header Block */}
-        <div style={{ transform: 'translateZ(40px)' }} className="space-y-2">
+        <div style={{ transform: 'translateZ(40px)' }} className="space-y-1.5">
           <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded border border-red-500/20 bg-red-50 text-[8px] font-bold text-red-600 font-mono tracking-widest uppercase">
+            <span className="px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-950/20 text-[8px] font-bold text-emerald-400 font-mono tracking-widest uppercase">
               {project.status || 'Active'}
             </span>
-            <span className="text-[9px] text-gray-500 font-mono flex items-center gap-1">
-              <Calendar className="w-3 h-3 text-red-500" />
+            <span className="text-[9px] text-slate-400 font-mono flex items-center gap-1">
+              <Calendar className="w-3 h-3 text-cyan-400" />
               {project.duration}
             </span>
           </div>
           
-          <h3 className="text-sm font-bold text-gray-900 tracking-wide uppercase leading-snug font-sans group-hover:text-red-600 transition-colors">
+          <h3 className="text-sm font-bold text-white tracking-wide uppercase leading-snug font-sans group-hover:text-emerald-400 transition-colors">
             {project.title}
           </h3>
           
           {project.association && (
-            <p className="text-[9px] text-gray-500 font-mono flex items-center gap-1">
-              <BookOpen className="w-3 h-3 text-red-500" />
+            <p className="text-[9px] text-slate-400 font-mono flex items-center gap-1">
+              <BookOpen className="w-3 h-3 text-cyan-400" />
               <span>{project.association}</span>
             </p>
           )}
         </div>
 
         {/* Description & Technical Summary block */}
-        <div style={{ transform: 'translateZ(25px)' }} className="space-y-2.5 bg-gray-50 p-3 rounded-lg border border-red-600/10">
-          <p className="text-[10px] text-gray-600 font-mono leading-relaxed line-clamp-3">
+        <div style={{ transform: 'translateZ(25px)' }} className="space-y-2 bg-[#070b12]/50 p-2.5 rounded-lg border border-slate-800">
+          <p className="text-[10px] text-slate-300 font-mono leading-relaxed line-clamp-3">
             {project.description}
           </p>
-          <div className="inline-flex items-center gap-1 text-[9px] text-red-600 font-mono tracking-widest uppercase font-bold group-hover:text-red-700 transition-colors">
+          <div className="inline-flex items-center gap-1 text-[9px] text-emerald-400 font-mono tracking-widest uppercase font-bold group-hover:text-emerald-300 transition-colors">
             <span>Decompile Blueprint</span>
             <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
 
         {/* Footer block: Tags */}
-        <div style={{ transform: 'translateZ(30px)' }} className="space-y-3 border-t border-red-600/10 pt-3">
+        <div style={{ transform: 'translateZ(30px)' }} className="space-y-3 border-t border-slate-800 pt-3">
           <div className="flex flex-wrap gap-1.5">
             {project.tags.slice(0, 3).map((t) => (
-              <span key={t} className="px-1.5 py-0.5 rounded bg-gray-100 text-gray-600 font-mono text-[8px] uppercase font-bold border border-gray-200">
+              <span key={t} className="px-1.5 py-0.5 rounded bg-[#1e293b]/60 text-slate-300 font-mono text-[8px] uppercase font-bold border border-slate-700">
                 {t}
               </span>
             ))}
             {project.tags.length > 3 && (
-              <span className="px-1.5 py-0.5 rounded bg-red-50 text-red-600 font-mono text-[8px] uppercase font-bold border border-red-200/50">
+              <span className="px-1.5 py-0.5 rounded bg-emerald-950/30 text-emerald-400 font-mono text-[8px] uppercase font-bold border border-emerald-500/20">
                 +{project.tags.length - 3} MORE
               </span>
             )}
@@ -219,7 +235,7 @@ export const ProjectsSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handlePrevDeck}
-                className="p-2.5 rounded-full border border-red-600/20 bg-white text-red-600 hover:bg-red-600 hover:text-white hover:shadow-md transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2.5 rounded-full border border-slate-800 bg-[#0d121b] text-emerald-400 hover:bg-emerald-500 hover:text-black hover:border-emerald-500 hover:shadow-md transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
                 title="Previous Project"
               >
                 ◀
@@ -248,7 +264,7 @@ export const ProjectsSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNextDeck}
-                className="p-2.5 rounded-full border border-red-600/20 bg-white text-red-600 hover:bg-red-600 hover:text-white hover:shadow-md transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2.5 rounded-full border border-slate-800 bg-[#0d121b] text-emerald-400 hover:bg-emerald-500 hover:text-black hover:border-emerald-500 hover:shadow-md transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
                 title="Next Project"
               >
                 ▶
@@ -268,8 +284,8 @@ export const ProjectsSection: React.FC = () => {
                     }}
                     className={`w-2.5 h-2.5 rounded-full transition-all ${
                       idx === activeDeckIdx 
-                        ? 'bg-red-600 w-6 shadow-[0_0_8px_rgba(220,38,38,0.4)]' 
-                        : 'bg-gray-300 hover:bg-gray-400'
+                        ? 'bg-emerald-500 w-6 shadow-[0_0_8px_rgba(16,185,129,0.4)]' 
+                        : 'bg-slate-700 hover:bg-slate-600'
                     }`}
                     aria-label={`Slide ${idx + 1}`}
                   />
@@ -277,19 +293,19 @@ export const ProjectsSection: React.FC = () => {
               </div>
 
               {/* High-Tech Autoplay Loading Line */}
-              <div className="w-32 h-[2px] bg-gray-100 border border-red-600/10 rounded-full overflow-hidden relative">
+              <div className="w-32 h-[2px] bg-slate-900 border border-slate-800 rounded-full overflow-hidden relative">
                 <motion.div
                   key={`${activeDeckIdx}-${isDeckHovered}`}
                   initial={{ width: '0%' }}
                   animate={isDeckHovered ? { width: '0%' } : { width: '100%' }}
                   transition={isDeckHovered ? { duration: 0 } : { duration: 2, ease: 'linear' }}
-                  className="h-full bg-gradient-to-r from-red-500 to-red-600"
+                  className="h-full bg-gradient-to-r from-emerald-500 to-cyan-500"
                 />
               </div>
             </div>
 
             {/* Helper message */}
-            <p className="text-[10px] text-gray-500 font-mono uppercase tracking-widest text-center">
+            <p className="text-[10px] text-slate-500 font-mono uppercase tracking-widest text-center">
               * Move cursor over the project deck to test the responsive 3D tilt physics engines. Click card to decompile blueprint.
             </p>
           </motion.div>
@@ -308,50 +324,66 @@ export const ProjectsSection: React.FC = () => {
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setSelectedProject(p)}
-                className="bg-white border border-red-600/10 rounded-xl p-5 flex flex-col justify-between hover:border-red-600/35 transition-all group relative overflow-hidden cursor-pointer hover:shadow-[0_10px_30px_rgba(220,38,38,0.06)]"
+                className="bg-[#0d121b] border border-slate-800 rounded-xl p-5 flex flex-col justify-between hover:border-emerald-500/30 transition-all group relative overflow-hidden cursor-pointer hover:shadow-[0_10px_30px_rgba(16,185,129,0.03)]"
               >
                 {/* Horizontal glowing lasers Sweep on hover */}
-                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+
+                {/* Project Thumbnail Image */}
+                {p.imageUrl && (
+                  <div className="w-full h-48 rounded-lg overflow-hidden border border-slate-800/80 relative mb-4 group-hover:border-emerald-500/30 transition-colors">
+                    <img 
+                      src={p.imageUrl} 
+                      alt={p.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    {/* Ambient vignette gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d121b]/40 via-transparent to-transparent opacity-80" />
+                    {/* Sci-fi scanline overlay */}
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none" />
+                  </div>
+                )}
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded border border-red-500/20 bg-red-50 text-[8px] font-bold text-red-600 font-mono tracking-widest uppercase">
+                      <span className="px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-950/20 text-[8px] font-bold text-emerald-400 font-mono tracking-widest uppercase">
                         {p.status}
                       </span>
                       {p.duration && (
-                        <span className="text-[9px] text-gray-500 font-mono flex items-center gap-1">
-                          <Calendar className="w-3 h-3 text-red-500" />
+                        <span className="text-[9px] text-slate-400 font-mono flex items-center gap-1">
+                          <Calendar className="w-3 h-3 text-cyan-400" />
                           {p.duration}
                         </span>
                       )}
                     </div>
-                    <Terminal className="w-4.5 h-4.5 text-red-500" />
+                    <Terminal className="w-4.5 h-4.5 text-emerald-400" />
                   </div>
 
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider group-hover:text-red-600 transition-colors">
+                  <h3 className="text-sm font-bold text-white uppercase tracking-wider group-hover:text-emerald-400 transition-colors">
                     {p.title}
                   </h3>
 
-                  <p className="text-[11px] text-gray-600 font-mono leading-relaxed line-clamp-3">
+                  <p className="text-[11px] text-slate-300 font-mono leading-relaxed line-clamp-3">
                     {p.description}
                   </p>
 
-                  <div className="inline-flex items-center gap-1 text-[9px] text-red-600 font-mono tracking-widest uppercase mt-2 group-hover:text-red-700 transition-colors">
+                  <div className="inline-flex items-center gap-1 text-[9px] text-emerald-400 font-mono tracking-widest uppercase mt-2 group-hover:text-emerald-300 transition-colors">
                     <span>Decompile Blueprint</span>
                     <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t border-gray-100 mt-5">
+                <div className="space-y-4 pt-4 border-t border-slate-800 mt-5">
                   <div className="flex flex-wrap gap-1.5">
                     {p.tags.slice(0, 4).map((t) => (
-                      <span key={t} className="px-1.5 py-0.5 rounded bg-gray-100 text-gray-600 font-mono text-[8px] uppercase font-bold border border-gray-200">
+                      <span key={t} className="px-1.5 py-0.5 rounded bg-[#1e293b]/60 text-slate-300 font-mono text-[8px] uppercase font-bold border border-slate-700">
                         {t}
                       </span>
                     ))}
                     {p.tags.length > 4 && (
-                      <span className="px-1.5 py-0.5 rounded bg-red-50 text-red-600 font-mono text-[8px] uppercase font-bold border border-red-200/50">
+                      <span className="px-1.5 py-0.5 rounded bg-emerald-950/30 text-emerald-400 font-mono text-[8px] uppercase font-bold border border-emerald-500/20">
                         +{p.tags.length - 4} MORE
                       </span>
                     )}
@@ -419,6 +451,21 @@ export const ProjectsSection: React.FC = () => {
                 
                 {/* Left Column: Context Overview */}
                 <div className="md:col-span-5 space-y-4">
+                  {selectedProject.imageUrl && (
+                    <div className="w-full h-64 rounded-lg overflow-hidden border border-emerald-500/25 relative shadow-[0_0_20px_rgba(16,185,129,0.05)] bg-[#0d121b]">
+                      <img 
+                        src={selectedProject.imageUrl} 
+                        alt={selectedProject.title} 
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                      {/* Ambient vignette gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-80" />
+                      {/* Sci-fi scanner sweep lines */}
+                      <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none" />
+                    </div>
+                  )}
+
                   <div className="p-4 bg-emerald-950/10 border border-emerald-500/10 rounded-md space-y-2">
                     <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block">SYSTEM OVERVIEW</span>
                     <p className="text-xs text-gray-300 leading-relaxed font-mono">

@@ -25,6 +25,7 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   status: 'completed' | 'ongoing' | 'upcoming';
+  imageUrl?: string;
 }
 
 export interface Experience {

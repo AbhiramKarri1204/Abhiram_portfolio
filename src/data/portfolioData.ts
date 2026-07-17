@@ -1,4 +1,7 @@
 import { SkillGroup, Project, Experience, Education, Credential } from '../types';
+import mobilePriceImg from '../assets/images/mobile_price_1784281241452.jpg';
+import recipeFinderImg from '../assets/images/recipe_finder_1784281258846.jpg';
+import apexfitImg from '../assets/images/apexfit_1784281274049.jpg';
 
 export const PERSONAL_INFO = {
   fullName: 'Karri Pavan Durga Satya Abhiram',
@@ -87,7 +90,8 @@ export const PROJECTS: Project[] = [
     ],
     tags: ['Python', 'Machine Learning', 'Pandas', 'NumPy', 'Scikit-Learn', 'Matplotlib', 'Seaborn', 'Jupyter Notebook'],
     githubUrl: 'https://github.com/KarriAbhiram',
-    status: 'completed'
+    status: 'completed',
+    imageUrl: mobilePriceImg
   },
   {
     title: 'Recipe Finder Web App',
@@ -103,7 +107,8 @@ export const PROJECTS: Project[] = [
     ],
     tags: ['Python', 'Flask', 'HTML5', 'CSS3', 'JavaScript', 'APIs', 'Pandas', 'Jupyter Notebook'],
     githubUrl: 'https://github.com/KarriAbhiram',
-    status: 'completed'
+    status: 'completed',
+    imageUrl: recipeFinderImg
   },
   {
     title: 'APEXFIT',
@@ -136,7 +141,8 @@ export const PROJECTS: Project[] = [
     ],
     tags: ['Artificial Intelligence', 'Python', 'Machine Learning', 'Data Visualization', 'Telemetry Tracking', 'Health & Wellness'],
     githubUrl: 'https://github.com/KarriAbhiram',
-    status: 'completed'
+    status: 'completed',
+    imageUrl: apexfitImg
   }
 ];
 

@@ -8,15 +8,31 @@ interface IntroVideoSplashProps {
 }
 
 export default function IntroVideoSplash({ onTransition }: IntroVideoSplashProps) {
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    // Check screen size for dynamic sizing adjustments
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize(); // Initial call
+    window.addEventListener('resize', handleResize);
+
     if (videoRef.current) {
-      // Force muted playback immediately to guarantee browser compliance
-      videoRef.current.muted = true;
+      // Set to unmuted by default
+      videoRef.current.muted = false;
       videoRef.current.play().catch((error) => {
-        console.log("Autoplay bound intercepted:", error);
+        console.log("Autoplay with sound blocked. Falling back to muted autoplay:", error);
+        // Fallback: play muted as per browser autoplay restrictions
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          setIsMuted(true);
+          videoRef.current.play().catch((err) => {
+            console.log("Muted fallback autoplay failed:", err);
+          });
+        }
       });
     }
 
@@ -25,7 +41,10 @@ export default function IntroVideoSplash({ onTransition }: IntroVideoSplashProps
       onTransition();
     }, 10000);
 
-    return () => clearTimeout(safetyTimer);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(safetyTimer);
+    };
   }, [onTransition]);
 
   const toggleMute = () => {
@@ -38,9 +57,19 @@ export default function IntroVideoSplash({ onTransition }: IntroVideoSplashProps
 
   return (
     <div style={{
-      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-      backgroundColor: '#000', display: 'flex', justifyContent: 'center', alignItems: 'center',
-      zIndex: 9999, overflow: 'hidden'
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: '#000000',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 9999,
+      overflow: 'hidden'
     }}>
       <video
         ref={videoRef}
@@ -48,44 +77,67 @@ export default function IntroVideoSplash({ onTransition }: IntroVideoSplashProps
         preload="auto"
         playsInline
         autoPlay
-        muted
+        muted={isMuted}
         onEnded={onTransition}
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain', // Adapts completely to any screen size (landscape or portrait) without clipping HUD parameters
+          backgroundColor: '#000000'
+        }}
       />
 
-      {/* Floating Mute/Unmute toggle action button */}
+      {/* Floating Mute/Unmute toggle action button - fully responsive sizing */}
       <button
         id="splash-mute-toggle"
         onClick={toggleMute}
         type="button"
         style={{
           position: 'absolute',
-          top: '20px',
-          right: '20px',
+          top: isMobile ? '16px' : '24px',
+          right: isMobile ? '16px' : '24px',
           zIndex: 10000,
-          backgroundColor: 'rgba(0, 0, 0, 0.6)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          borderRadius: '50%',
-          width: '48px',
-          height: '48px',
+          backgroundColor: 'rgba(0, 0, 0, 0.75)',
+          border: '1.5px solid rgba(239, 68, 68, 0.6)',
+          borderRadius: '9999px',
+          padding: isMobile ? '6px 12px' : '10px 20px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          gap: isMobile ? '4px' : '8px',
           cursor: 'pointer',
           color: '#ffffff',
-          transition: 'all 0.2s ease',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          boxShadow: '0 0 15px rgba(239, 68, 68, 0.25)',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(220, 38, 38, 0.8)';
-          e.currentTarget.style.borderColor = 'rgba(220, 38, 38, 1)';
+          e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.9)';
+          e.currentTarget.style.borderColor = 'rgba(255, 0, 60, 1)';
+          e.currentTarget.style.boxShadow = '0 0 25px rgba(239, 68, 68, 0.6)';
+          e.currentTarget.style.transform = 'scale(1.05)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+          e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.6)';
+          e.currentTarget.style.boxShadow = '0 0 15px rgba(239, 68, 68, 0.25)';
+          e.currentTarget.style.transform = 'scale(1)';
         }}
         aria-label={isMuted ? 'Unmute intro video' : 'Mute intro video'}
       >
-        {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+        {isMuted ? (
+          <VolumeX className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} text-red-500 animate-pulse`} />
+        ) : (
+          <Volume2 className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} text-red-400`} />
+        )}
+        <span style={{
+          fontSize: isMobile ? '9px' : '11px',
+          fontWeight: 'bold',
+          fontFamily: 'monospace',
+          letterSpacing: '0.08em',
+          color: '#ffffff'
+        }}>
+          {isMuted ? 'SOUND OFF' : 'SOUND ON'}
+        </span>
       </button>
     </div>
   );
